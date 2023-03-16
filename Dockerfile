@@ -13,4 +13,4 @@ RUN apt-get update -y -qq \
         texlive-latex-recommended \
     && apt-get clean
 
-User 1000
+USER coder
