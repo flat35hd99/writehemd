@@ -7,8 +7,6 @@ RUN apt-get update \
     && apt-get install \
         python3 \
         python3-pip \
-        msttcorefonts \
-        ttf-mscorefonts-installer \
         texlive-fonts-recommended \
         texlive-lang-greek \
         texlive-latex-base \
