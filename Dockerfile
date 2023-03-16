@@ -2,6 +2,7 @@ FROM codercom/code-server:ubuntu
 
 USER root
 
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y -qq \
     && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections \
     && apt-get install -y -qq \
