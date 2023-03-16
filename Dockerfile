@@ -2,7 +2,7 @@ FROM codercom/code-server:latest
 
 RUN apt-get update \
     && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections \
-    && sudo apt-get install \
+    && apt-get install \
         python3 \
         python3-pip \
         msttcorefonts \
