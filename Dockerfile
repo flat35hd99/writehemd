@@ -2,9 +2,9 @@ FROM codercom/code-server:latest
 
 USER root
 
-RUN apt-get update \
+RUN apt-get update -y -qq \
     && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections \
-    && apt-get install \
+    && apt-get install -y -qq \
         python3 \
         python3-pip \
         texlive-fonts-recommended \
