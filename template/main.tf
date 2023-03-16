@@ -21,7 +21,7 @@ data "coder_workspace" "me" {
 }
 
 variable "workspace_container_label" {
-  default = "v0.4"
+  default = "v0.5"
 }
 
 resource "coder_agent" "main" {
