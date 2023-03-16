@@ -1,4 +1,4 @@
-FROM codercom/code-server:latest
+FROM codercom/code-server:ubuntu
 
 USER root
 
@@ -13,4 +13,6 @@ RUN apt-get update -y -qq \
         texlive-latex-recommended \
     && apt-get clean
 
-USER coder
+USER 1000
+ENV USER=coder
+WORKDIR /home/coder
