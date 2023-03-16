@@ -20,10 +20,6 @@ provider "docker" {
 data "coder_workspace" "me" {
 }
 
-data "docker_registry_image" "workspace" {
-  name = "ghcr.io/flat35hd99/writehemd:latest"
-}
-
 resource "coder_agent" "main" {
   arch                   = data.coder_provisioner.me.arch
   os                     = "linux"
@@ -89,14 +85,9 @@ resource "docker_volume" "home_volume" {
   }
 }
 
-resource "docker_image" "workspace" {
-  name = data.docker_registry_image.workspace.name
-  pull_triggers = [data.docker_registry_image.workspace.sha256_digest]
-}
-
 resource "docker_container" "workspace" {
   count = data.coder_workspace.me.start_count
-  image = docker_image.workspace.image_id
+  image = "ghcr.io/flat35hd99/writehemd:latest"
   # Uses lower() to avoid Docker restriction on container names.
   name = "coder-${data.coder_workspace.me.owner}-${lower(data.coder_workspace.me.name)}"
   # Hostname makes the shell more user friendly: coder@my-workspace:~$
