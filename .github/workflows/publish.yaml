@@ -52,3 +52,19 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  build-template:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - run: |
+          cd template
+          tar -cvf ../template.tar *
+      
+      - name: Upload template
+        uses: actions/upload-artifact@v2
+        with:
+          name: coder-template
+          path: template.tar
