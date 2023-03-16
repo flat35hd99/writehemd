@@ -13,9 +13,9 @@ RUN apt-get update -y -qq \
         texlive-latex-extra \
         texlive-latex-base \
         texlive-latex-recommended \
-    && curl https://github.com/jgm/pandoc/releases/download/2.17.0.1/pandoc-2.17.0.1-1-amd64.deb -o pandoc.deb \
+    && curl -o pandoc.deb -OL https://github.com/jgm/pandoc/releases/download/2.17.0.1/pandoc-2.17.0.1-1-amd64.deb \
     && dpkg -i pandoc.deb \
-    && curl https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.12.2/pandoc-crossref-Linux.tar.xz -o pandoc-crossref.tar.xz \
+    && curl -o pandoc-crossref.tar.xz -OL https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.12.2/pandoc-crossref-Linux.tar.xz \
     && tar -xvf pandoc-crossref.tar.xz \
     && mv pandoc-crossref /bin \
     && rm -rf pandoc* \
