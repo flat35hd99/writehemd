@@ -12,3 +12,5 @@ RUN apt-get update -y -qq \
         texlive-latex-base \
         texlive-latex-recommended \
     && apt-get clean
+
+User 1000
