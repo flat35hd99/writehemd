@@ -1,5 +1,7 @@
 FROM codercom/code-server:latest
 
+USER root
+
 RUN apt-get update \
     && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections \
     && apt-get install \
