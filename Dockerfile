@@ -11,5 +11,4 @@ RUN apt-get update \
         texlive-lang-greek \
         texlive-latex-base \
         texlive-latex-recommended \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean
