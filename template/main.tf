@@ -20,8 +20,18 @@ provider "docker" {
 data "coder_workspace" "me" {
 }
 
-variable "workspace_container_label" {
-  default = "v0.7.1"
+data "coder_parameter" "docker_host" {
+  name        = "Version of container to use"
+  description = "Which version would you like to use?"
+  icon        = "/emojis/1f30f.png"
+  type        = "string"
+  default     = "latest"
+
+  option {
+    for_each = { for tag in split(",", local.github_tags) : tag => tag }
+    name = each.value
+    value = each.value
+  }
 }
 
 resource "coder_agent" "main" {
@@ -91,7 +101,7 @@ resource "docker_volume" "home_volume" {
 
 resource "docker_container" "workspace" {
   count = data.coder_workspace.me.start_count
-  image = "ghcr.io/flat35hd99/writehemd:${var.workspace_container_label}"
+  image = "ghcr.io/flat35hd99/writehemd:${data.coder_parameter.workspace_container_label.value}"
   # Uses lower() to avoid Docker restriction on container names.
   name = "coder-${data.coder_workspace.me.owner}-${lower(data.coder_workspace.me.name)}"
   # Hostname makes the shell more user friendly: coder@my-workspace:~$
