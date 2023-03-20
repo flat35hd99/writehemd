@@ -21,11 +21,7 @@ data "coder_workspace" "me" {
 }
 
 variable "workspace_container_label" {
-  default = "v0.7"
-}
-
-variable "workspace_prefetch_repository_url" {
-  default = "git@github.com:yamatolab/hp36_heat_energy.git"
+  default = "v0.7.1"
 }
 
 resource "coder_agent" "main" {
@@ -36,7 +32,6 @@ resource "coder_agent" "main" {
   startup_script         = <<-EOT
     set -e
     code-server --auth none >/tmp/code-server.log 2>&1 &
-    git clone ${var.workspace_prefetch_repository_url} /home/coder/prefetch
   EOT
 
   # These environment variables allow you to make Git commits right away after creating a
