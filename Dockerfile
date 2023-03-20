@@ -27,4 +27,4 @@ ENV USER=coder
 WORKDIR /home/coder
 
 # Add trusted SSH key fingerprints
-COPY --chown=coder:coder ./authorized_keys /home/coder/.ssh/authorized_keys
+COPY --chown=coder:coder ./known_hosts /home/coder/.ssh/known_hosts
