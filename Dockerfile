@@ -25,3 +25,6 @@ RUN apt-get update -y -qq \
 USER 1000
 ENV USER=coder
 WORKDIR /home/coder
+
+# Add trusted SSH key fingerprints
+COPY --chown=coder:coder ./authorized_keys /home/coder/.ssh/authorized_keys
