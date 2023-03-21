@@ -28,4 +28,4 @@ WORKDIR /home/coder
 
 # Add trusted SSH key fingerprints
 COPY --chown=coder:coder ./known_hosts /home/coder/.ssh/known_hosts
-RUN ln -s /usr/bin/python3 /home/coder/.local/bin/python
+RUN ln -s /usr/bin/python3 /usr/bin/python
