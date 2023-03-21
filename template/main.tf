@@ -14,23 +14,29 @@ terraform {
 data "coder_provisioner" "me" {
 }
 
+provider "coder" {
+  feature_use_managed_variables = "true"
+}
+
 provider "docker" {
 }
 
 data "coder_workspace" "me" {
 }
 
-data "coder_parameter" "docker_host" {
+data "coder_parameter" "workspace_container_label" {
   name        = "Version of container to use"
   description = "Which version would you like to use?"
   icon        = "/emojis/1f30f.png"
   type        = "string"
-  default     = "latest"
+  default     = "v0.9"
 
-  option {
-    for_each = { for tag in split(",", local.github_tags) : tag => tag }
-    name = each.value
-    value = each.value
+  dynamic "option" {
+    for_each = { for tag in local.github_tags : tag.name => tag }
+    content {
+      value = option.value.name
+      name = option.value.name
+    }
   }
 }
 

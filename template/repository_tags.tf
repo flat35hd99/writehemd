@@ -15,5 +15,5 @@ data "http" "github_tags" {
 }
 
 locals {
-  github_tags = jsondecode(data.http.github_tags.body)["*.name"] |> join(",")
+  github_tags = jsondecode(data.http.github_tags.body)
 }
